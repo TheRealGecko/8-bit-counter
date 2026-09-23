@@ -1,4 +1,4 @@
-`timescale 10ms/1ms
+`timescale 1ns / 1ps
 
 module tt_um_eight_bit_counter (
     input reg clk, // Clock

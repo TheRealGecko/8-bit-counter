@@ -1,4 +1,4 @@
-`timescale 10ms/1ms
+`timescale 1ns / 1ps
 
 module tt_um_eight_bit_counter_tb;
     reg clk; // Clock
@@ -22,8 +22,8 @@ module tt_um_eight_bit_counter_tb;
         forever #5 clk <= ~clk;
     end
 
-    initial begin // End after 5 clock cycles
-        #50
+    initial begin
+        #3000
         $finish;
     end
 
@@ -31,6 +31,8 @@ module tt_um_eight_bit_counter_tb;
         rst <= 0;
         #42
         rst <= 1;
+        #5
+        rst <= 0;
     end
 
     initial begin

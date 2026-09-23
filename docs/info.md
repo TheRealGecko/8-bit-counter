@@ -16,7 +16,7 @@ This is an 8-bit programmable counter with:
     - Counter value updated on rising edge of ``clk``
     - if ``set_val_ena`` is high, counter is set to value in ``val``
     - If ``set_val_ena`` is low, counter increments by 1
-        - Counter wraps back to 0 if increment happens at max value (255)
+        - Counter wraps back to 0 if increment happens at max value (0xFF)
 - Tri-state outputs
     - Sets ``display_val`` to counter value when ``out_ena`` is high
     - Sets ``display_val`` to high-Z when ``out_ena`` is low
@@ -24,7 +24,7 @@ This is an 8-bit programmable counter with:
 
 ## How to test
 
-Explain how to use your project
+Follow instructions in ``test/README.md``
 
 ## External hardware
 

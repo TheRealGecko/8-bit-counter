@@ -1,49 +1,62 @@
-`default_nettype none
 `timescale 1ns / 1ps
 
-/* This testbench just instantiates the module and makes some convenient wires
-   that can be driven / tested by the cocotb test.py.
-*/
-module tb ();
+module tt_um_eight_bit_counter_tb;
+    reg clk; // Clock
+    reg rst; // Reset counter to 0 when high
+    reg set_val_ena; // Enable setting the counter to 'val' (desired value) when high 
+    reg out_ena; // Enable counter output when high
+    reg[7:0] val; // Value to set counter to
+    wire[7:0] display_val; // Value to output/display
 
-  // Dump the signals to a FST file. You can view it with gtkwave or surfer.
-  initial begin
-    $dumpfile("tb.fst");
-    $dumpvars(0, tb);
-    #1;
-  end
+    tt_um_eight_bit_counter dut (
+        .clk (clk),
+        .rst (rst),
+        .set_val_ena (set_val_ena),
+        .out_ena (out_ena),
+        .val (val),
+        .display_val (display_val)
+    );
 
-  // Wire up the inputs and outputs:
-  reg clk;
-  reg rst_n;
-  reg ena;
-  reg [7:0] ui_in;
-  reg [7:0] uio_in;
-  wire [7:0] uo_out;
-  wire [7:0] uio_out;
-  wire [7:0] uio_oe;
-`ifdef GL_TEST
-  wire VPWR = 1'b1;
-  wire VGND = 1'b0;
-`endif
+    initial begin
+        clk <= 0;
+        forever #5 clk <= ~clk;
+    end
 
-  // Replace tt_um_example with your module name:
-  tt_um_example user_project (
+    initial begin
+        #3000
+        $finish;
+    end
 
-      // Include power ports for the Gate Level test:
-`ifdef GL_TEST
-      .VPWR(VPWR),
-      .VGND(VGND),
-`endif
+    initial begin
+        rst <= 0;
+        #42
+        rst <= 1;
+        #5
+        rst <= 0;
+    end
 
-      .ui_in  (ui_in),    // Dedicated inputs
-      .uo_out (uo_out),   // Dedicated outputs
-      .uio_in (uio_in),   // IOs: Input path
-      .uio_out(uio_out),  // IOs: Output path
-      .uio_oe (uio_oe),   // IOs: Enable path (active high: 0=input, 1=output)
-      .ena    (ena),      // enable - goes high when design is selected
-      .clk    (clk),      // clock
-      .rst_n  (rst_n)     // not reset
-  );
+    initial begin
+        set_val_ena <= 0;
+        #22
+        set_val_ena <= 1;
+        #5
+        set_val_ena <= 0;
+    end
 
-endmodule
+    initial begin
+        out_ena <= 0;
+        #7
+        out_ena <= 1;
+    end
+
+    initial begin
+        val <= 0;
+        #12
+        val <= 8'b0000101;
+    end
+
+    initial  begin
+        $dumpfile("counter.vcd");
+        $dumpvars;
+    end 
+endmodule;
