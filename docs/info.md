@@ -9,7 +9,18 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+This is an 8-bit programmable counter with:
+- Asynchronous reset
+    - Reset's counter to ``0`` on rising edge of ``rst``
+- Synchronous load
+    - Counter value updated on rising edge of ``clk``
+    - if ``set_val_ena`` is high, counter is set to value in ``val``
+    - If ``set_val_ena`` is low, counter increments by 1
+        - Counter wraps back to 0 if increment happens at max value (255)
+- Tri-state outputs
+    - Sets ``display_val`` to counter value when ``out_ena`` is high
+    - Sets ``display_val`` to high-Z when ``out_ena`` is low
+
 
 ## How to test
 
@@ -17,4 +28,4 @@ Explain how to use your project
 
 ## External hardware
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+N/A
