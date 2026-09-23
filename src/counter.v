@@ -1,6 +1,6 @@
 `timescale 10ms/1ms
 
-module eight_bit_counter (
+module tt_um_eight_bit_counter (
     input reg clk, // Clock
     input reg rst, // Reset counter to 0 when high
     input reg set_val_ena, // Enable setting the counter to 'val' (desired value) when high 
