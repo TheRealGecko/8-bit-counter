@@ -20,4 +20,4 @@ module tt_um_eight_bit_counter (
         else
             count <= count + 1; // Count up
     end
-endmodule;
+endmodule

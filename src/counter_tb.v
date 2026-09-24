@@ -59,4 +59,4 @@ module tt_um_eight_bit_counter_tb;
         $dumpfile("counter.vcd");
         $dumpvars;
     end 
-endmodule;
+endmodule
