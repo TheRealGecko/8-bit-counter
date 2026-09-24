@@ -28,7 +28,7 @@ module tb ();
 `endif
 
   // Replace tt_um_example with your module name:
-  tt_um_example user_project (
+  tt_um_eight_bit_counter user_project (
 
       // Include power ports for the Gate Level test:
 `ifdef GL_TEST
@@ -45,5 +45,35 @@ module tb ();
       .clk    (clk),      // clock
       .rst_n  (rst_n)     // not reset
   );
+
+    initial begin
+        rst_n <= 0;
+        #1
+        rst_n <= 1;
+        #62
+        rst_n <= 0;
+        #5
+        rst_n <= 1;
+    end
+
+    initial begin
+        uio_in <= 8'b0000000;
+        #22
+        uio_in <= 8'b0000001;
+        #20
+        uio_in <= 8'b000000;
+    end
+
+    initial begin
+        ena <= 0;
+        #7
+        ena <= 1;
+    end
+
+    initial begin
+        ui_in <= 0;
+        #12
+        ui_in <= 8'b0000101;
+    end
 
 endmodule

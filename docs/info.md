@@ -9,12 +9,23 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+This is an 8-bit programmable counter with:
+- Asynchronous reset
+    - Reset counter to ``0`` when ``rst_n``is low 
+- Synchronous load
+    - Counter value updated on rising edge of ``clk``
+    - if ``uio_in[0]`` is high, counter is set to value in ``ui_in``
+    - If ``uio_in[0]`` is low, counter increments by 1
+        - Counter wraps back to 0 if increment happens at max value (0xFF)
+- Tri-state outputs
+    - Sets ``uo_out`` to counter value when ``ena`` is high
+    - Sets ``uo_out`` to high-Z when ``ena`` is low
+
 
 ## How to test
 
-Explain how to use your project
+Run the Makefile in the ``test`` dir
 
 ## External hardware
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+N/A
