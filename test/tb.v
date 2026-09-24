@@ -1,26 +1,6 @@
 `timescale 1ns / 1ps
 
 module tt_um_eight_bit_counter_tb;
-    reg clk; // Clock
-    reg rst; // Reset counter to 0 when high
-    reg set_val_ena; // Enable setting the counter to 'val' (desired value) when high 
-    reg out_ena; // Enable counter output when high
-    reg[7:0] val; // Value to set counter to
-    wire[7:0] display_val; // Value to output/display
-
-    tt_um_eight_bit_counter dut (
-        .clk (clk),
-        .rst (rst),
-        .set_val_ena (set_val_ena),
-        .out_ena (out_ena),
-        .val (val),
-        .display_val (display_val)
-    );
-
-    initial begin
-        clk <= 0;
-        forever #5 clk <= ~clk;
-    end
 
   // Wire up the inputs and outputs:
   reg clk;
