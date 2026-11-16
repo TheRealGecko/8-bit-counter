@@ -12,7 +12,6 @@ project:
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
   top_module:  "tt_um_eight_bit_counter"
-  top_module:  "tt_um_eight_bit_counter"
 
   # List your project's source files here.
   # Source files must be in ./src and you must list each source file separately, one per line.
